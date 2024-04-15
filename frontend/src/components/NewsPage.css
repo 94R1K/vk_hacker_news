@@ -6,19 +6,25 @@
   height: 100vh;
   margin: 0 auto;
   padding: 20px;
+  background-color: #fafafa;
 }
 
 .news-card {
   width: 100%;
   max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
 }
 
 .back-link {
   display: block;
   margin-block-start: 15px;
-  text-decoration: none;
-  color: #007BFF;
+  color: #0084ff;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .news-card h1, .news-card p, .news-card a {
@@ -26,23 +32,24 @@
 }
 
 .news-card h1 {
+  font-size: 28px;
   color: #333;
-  font-size: 24px;
 }
 
 .news-card p {
   color: #666;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .news-card button {
-  background-color: #007BFF;
+  background-color: #0084ff;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   margin-block-start: 10px;
+  transition: background-color 0.3s;
 }
 
 .news-card button:hover {
@@ -50,21 +57,28 @@
 }
 
 .news-card a {
-  display: inline-block;
-  margin-block-start: 15px;
-  text-decoration: none;
-  color: #007BFF;
+  color: #0084ff;
   font-weight: bold;
+}
+
+.news-card a:hover {
+  color: #0056b3;
 }
 
 .news-card ul {
   list-style-type: none;
-  padding: 0;
+  padding-left: 0;
 }
 
 .news-card li {
   padding: 10px;
   border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.news-card li:hover {
+  background-color: #f0f0f0;
 }
 
 .news-card li:last-child {

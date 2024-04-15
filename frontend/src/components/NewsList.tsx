@@ -25,7 +25,7 @@ const NewsList: React.FC = () => {
 
   return (
     <div>
-      <h1 className="news-title">Последние новости «Hacker News»</h1>
+      <h1 className="news-title">Последние новости «Hacker News» 👨‍💻</h1>
       {error && <p>{error}</p>}
       <button onClick={loadNews} className="news-reload">Обновить новости</button>
       <ul className="news-container">

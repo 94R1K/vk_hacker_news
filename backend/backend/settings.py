@@ -3,6 +3,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Намерено не скрывал и не использовал .env в целях экономии времени на запуск
 SECRET_KEY = 'django-insecure-vau1+@!q_^s&#c)g)(yrn_!hiohzsfysrg+9try&vl4bmm6_ur'
 
 DEBUG = True
@@ -56,6 +57,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+# Намерено не защищал БД и не использовал .env в целях экономии времени на запуск
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

@@ -22,4 +22,5 @@ export interface Comment {
   date_time: string;
   news: number;
   children: number[];
+  childrenComments?: Comment[];
 }
