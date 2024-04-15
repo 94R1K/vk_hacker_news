@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  db:
+  hacker-db:
     image: postgres:latest
     restart: always
     environment:
@@ -13,54 +13,45 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U sample_user -d sample_db"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
-  backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - "8000:8000"
-    volumes:
-      - static_value:/app/backend_static/
-      - media_value:/app/backend_media/
-    depends_on:
-      db:
-        condition: service_healthy
-
-  frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - "3000:3000"
-    volumes:
-      - frontend_build:/app/result_build/
-    environment:
-      NODE_ENV: production
-
-  nginx:
-    image: nginx:latest
-    restart: always
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - frontend_build:/usr/share/nginx/html/
-      - static_value:/var/html/backend_static/
-      - media_value:/var/html/backend_media/
-    depends_on:
-      - backend
-      - frontend
+#  backend:
+#    build:
+#      context: ../backend
+#      dockerfile: Dockerfile
+#    restart: always
+#    ports:
+#      - "8000:8000"
+#    volumes:
+#      - static_value:/app/backend_static/
+#      - media_value:/app/backend_media/
+#    depends_on:
+#      - hacker-db
+#
+#  frontend:
+#    build:
+#      context: ../frontend
+#      dockerfile: Dockerfile
+#    restart: always
+#    ports:
+#      - "3000:3000"
+#    environment:
+#      - NODE_ENV=development
+#    volumes:
+#      - frontend_build:/app/result_build/
+#
+#  nginx:
+#    image: nginx:latest
+#    restart: always
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+#      - frontend_build:/usr/share/nginx/html/
+#      - static_value:/var/html/backend_static/
+#      - media_value:/var/html/backend_media/
+#    depends_on:
+#      - backend
+#      - frontend
 
 volumes:
-  frontend_build:
-  static_value:
-  media_value:
   db_data:

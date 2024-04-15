@@ -62,7 +62,7 @@ DATABASES = {
         'NAME': 'sample_db',
         'USER': 'sample_user',
         'PASSWORD': 'sample_password',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -105,5 +105,8 @@ REST_FRAMEWORK = {
 }
 
 CORS_URLS_REGEX = r'^/api/.*$'
-CORS_ORIGIN_ALLOW_ALL = True
-
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost',
+]

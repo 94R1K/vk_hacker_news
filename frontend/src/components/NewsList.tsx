@@ -1,32 +1,45 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { fetchNews } from '../features/news/newsSlice';
-import { useNavigate } from 'react-router-dom';
-import styles from './NewsList.module.css';
-
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { fetchLatestNews } from '../api/hackerNewsAPI';
+import { NewsItem } from '../types';
+import './NewsList.css';
 const NewsList: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const news = useAppSelector((state) => state.news.items);
-  const navigate = useNavigate();
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const loadNews = async () => {
+    try {
+      const news = await fetchLatestNews();
+      setNewsItems(news);
+      setError(null);
+    } catch (error) {
+      setError('Не удалось получить новости.');
+    }
+  };
 
   useEffect(() => {
-    dispatch(fetchNews());
-    const interval = setInterval(() => {
-      dispatch(fetchNews());
-    }, 60000);
+    loadNews();
+    const interval = setInterval(loadNews, 60000);
     return () => clearInterval(interval);
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
-      {news.map((newsItem) => (
-        <div key={newsItem.id} onClick={() => navigate(`/news/${newsItem.id}`)}>
-          <h2>{newsItem.title}</h2>
-          <p>Author: {newsItem.author}</p>
-          <p>Date: {newsItem.date.toDateString()}</p>
-        </div>
-      ))}
-      <button onClick={() => dispatch(fetchNews())}>Refresh News</button>
+      <h1 className="news-title">Последние новости «Hacker News»</h1>
+      {error && <p>{error}</p>}
+      <button onClick={loadNews} className="news-reload">Обновить новости</button>
+      <ul className="news-container">
+        {newsItems.map(newsItem => (
+          <li key={newsItem.id} className="news-item">
+            <Link to={`/news/${newsItem.id}`} className="news-item-link">
+              <div>Название: {newsItem.title}</div>
+              <div>Рейтинг: {newsItem.rating}</div>
+              <div>Автор: {newsItem.author}</div>
+              <div>Дата публикации: {new Date(newsItem.date_time).toLocaleString()}</div>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

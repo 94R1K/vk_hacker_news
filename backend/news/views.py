@@ -7,7 +7,7 @@ from .serializers import NewsSerializer, CommentSerializer
 
 
 class NewsViewSet(viewsets.ModelViewSet):
-    queryset = News.objects.all().order_by('-pub_date')
+    queryset = News.objects.all()
     serializer_class = NewsSerializer
 
     @method_decorator(cache_page(60*2))

@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from .models import News, Comment
 
 
@@ -14,4 +13,4 @@ class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        fields = ['id', 'title', 'rating', 'author', 'pub_date', 'comments']
+        fields = ['id', 'title', 'rating', 'author', 'date_time', 'comments', 'comments_count']

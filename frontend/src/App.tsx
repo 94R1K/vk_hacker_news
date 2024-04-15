@@ -1,16 +1,16 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NewsList from './components/NewsList';
-import NewsDetail from './components/NewsDetail';
+import NewsPage from './components/NewsPage';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <div>
       <Routes>
         <Route path="/" element={<NewsList />} />
-        <Route path="/news/:newsId" element={<NewsDetail />} />
+        <Route path="/news/:id" element={<NewsPage />} />
       </Routes>
-    </Router>
+    </div>
   );
 };
 

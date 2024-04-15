@@ -1,17 +1,15 @@
-FROM node:20.7-slim as build
+FROM node:20.12-buster-slim as build
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 3000
 
 CMD cp -r build result_build
-
-ENV NODE_ENV=production
 
 CMD ["yarn", "start"]
