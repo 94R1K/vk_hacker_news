@@ -1,4 +1,4 @@
-### [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Профильное+задание+«Hacker News»)](https://git.io/typing-svg)
+# Профильное задание «Hacker News»
 
 # Стек технологий
 [![React](https://shields.io/badge/react-464646?logo=react&style=flat-square)](https://react.dev/)
