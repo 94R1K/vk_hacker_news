@@ -43,7 +43,7 @@ docker-compose exec -T backend python manage.py createsuperuser
 
 ### Отображаем список работающих контейнеров:
 ```shell
-sudo docker container ls
+docker container ls
 ```
 
 ## Отобразятся запущенные контейнеры:
@@ -56,7 +56,7 @@ sudo docker container ls
 
 ### Необходимо выбрать ID контейнера с бекендом для создания суперпользователя:
 ```shell
-sudo docker exec -it d3eb395676c6 python manage.py createsuperuser
+docker exec -it d3eb395676c6 python manage.py createsuperuser
 ```
 # Ура! Можно тестировать проект 🙌
 
