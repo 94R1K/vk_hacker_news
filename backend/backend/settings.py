@@ -64,7 +64,7 @@ DATABASES = {
         'NAME': 'sample_db',
         'USER': 'sample_user',
         'PASSWORD': 'sample_password',
-        'HOST': 'localhost',
+        'HOST': 'hacker-db',
         'PORT': '5432'
     }
 }
